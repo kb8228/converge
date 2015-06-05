@@ -4,6 +4,14 @@ Rails.application.routes.draw do
   
   namespace :api do
     resources :users, only: [:show, :update, :create, :destroy]
+    post '/users/:id' => 'users#show' #to accept token
+
+    resources :meetups, only: [:index, :show, :update, :create, :destroy]
+
+    resources :locations, only: [:index, :show, :create, :destroy]
+
+    resources :invitees, only: [:index, :show, :create, :destroy]
+
     post '/authenticate' => 'authentication#sign_in'
   end
 

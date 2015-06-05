@@ -27,6 +27,7 @@ angular.module("convergeApp")
           self.isAuthenticated = isAuthenticated();
           self.email = null;
           self.password = null;
+          window.location.href = ('#/users/' + data.id);
       })
       .error(function(data){
         console.log(data);
@@ -36,6 +37,7 @@ angular.module("convergeApp")
     function logout(){
       window.sessionStorage.clear();
       self.isAuthenticated = isAuthenticated();
+      window.location.href = ('#/');
     }
             
     function setAccessToken(token){

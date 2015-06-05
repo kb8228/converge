@@ -1,5 +1,5 @@
 <!-- index.html -->
-<div ng-controller="AuthenticationController as auth">
+<div class="form-group" ng-controller="AuthenticationController as auth">
   <!-- begin login form -->
   <form class="login-form" ng-submit="auth.login()" ng-if="auth.isAuthenticated == false">
     <input class="login-input" type="text" placeholder="email" ng-model="auth.email">
@@ -11,10 +11,92 @@
   <div ng-if="auth.isAuthenticated">
     <button ng-click="auth.logout()">Logout</button>
   </div>
+</div> <!-- END auth -->
 
-</div>
-
-<section>
-  {{usersCtrl.users}}
+<section ng-controller="UsersController as usersCtrl">
+  <form name="signup_form" novalidate ng-submit="usersCtrl.createUser(signup_form.$valid)">
+  <fieldset class="col-sm-3">
+    <legend>Signup</legend>
+    <div class="form-group"> <!-- NAME -->
+      <label>(User)Name</label>
+      <input type="text" 
+          placeholder="name is required" 
+          name="name" 
+          class="form-control"
+          ng-model="usersCtrl.name" 
+          ng-minlength=3 
+          ng-maxlength=20 required />
+       <div class="error-container" ng-show="signup_form.name.$dirty && signup_form.name.$invalid">
+         <small class="error" 
+                ng-show="signup_form.name.$error.required">
+                name is required
+         </small>
+         <small class="error" 
+                ng-show="signup_form.name.$error.minlength || signup_form.name.$error.maxlength">
+                name needs to be 3 to 20 characters long
+         </small>
+       </div>
+    </div> <!-- NAME ENDs -->
+    <div class="form-group"> <!-- EMAIL -->          
+      <label>Your email</label>
+      <input type="email" 
+        placeholder="email is required" 
+        name="email" 
+        class="form-control"
+        ng-model="usersCtrl.email" 
+        ng-minlength=5 ng-maxlength=24 required />
+      <div class="error-container" ng-show="signup_form.email.$dirty && signup_form.email.$invalid">
+        <small class="error" 
+           ng-show="signup_form.email.$error.required">
+           email is required
+        </small>
+        <small class="error" 
+           ng-show="signup_form.email.$error.email">
+           email needs to be valid
+        </small>
+      </div>
+    </div> <!-- EMAIL ENDs -->
+    <div class="form-group"> <!-- PASSWORD -->
+      <label>Password</label>
+      <input type="password"
+        placeholder="6 to 20 characters"
+        name="password"
+        class="form-control" 
+        ng-model="usersCtrl.password" 
+        ng-minlength=6 ng-maxlength=20 required />
+      <div class="error-container" ng-show="signup_form.password.$dirty && signup_form.password.$invalid">
+        <small class="error" 
+           ng-show="signup_form.password.$error.required">
+           password is required
+        </small>
+        <small class="error" 
+           ng-show="signup_form.password.$error.minlength || signup_form.password.$error.maxlength">
+           password needs to be 6 to 20 characters long
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" 
+          placeholder="retype password"
+          name="confirmPassword" 
+          class="form-control" 
+          ng-model="usersCtrl.password_confirmation" 
+          match="usersCtrl.password"
+          required />
+        <div class="error-container" ng-show="signup_form.confirmPassword.$dirty && signup_form.confirmPassword.$invalid">
+          <small class="error" 
+             ng-show="signup_form.confirmPassword.$error.required">
+             password confirmation is required
+          </small>
+          <small class="error" 
+             ng-show="signup_form.confirmPassword.$error.match">
+             password confirmation needs to match password
+          </small>
+        </div>
+    </div>
+    <button type="submit" ng-disabled="signup_form.$invalid" class="btn btn-primary">Join!</button>
+  </fieldset>
+</form>
 </section>
 

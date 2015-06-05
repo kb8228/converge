@@ -1,2 +1,4 @@
 // app.js
-angular.module('convergeApp',['templates','ngRoute']);
+angular.module('convergeApp',['templates','ngRoute','validation.match']);
+
+

@@ -1,5 +1,6 @@
 module API
   class UsersController < ApplicationController
+    skip_before_filter  :verify_authenticity_token
     before_action :restrict_access, only: [:show, :update, :destroy]
     # def index
     #   render json: User.all
