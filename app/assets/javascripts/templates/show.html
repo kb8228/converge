@@ -1,4 +1,6 @@
 <!-- show.html -->
+<div class="main">
+
 <div ng-controller="AuthenticationController as auth">
   <!-- begin login form -->
   <form class="login-form" ng-submit="auth.login()" ng-if="auth.isAuthenticated == false">
@@ -9,55 +11,63 @@
   <!-- end login form -->
 
   <div ng-if="auth.isAuthenticated">
-    <button ng-click="auth.logout()">Logout</button>
-  </div>  
-
-  <section ng-init="usersCtrl.showUser()">
-    <h2 ng-if="auth.isAuthenticated">Hello, {{usersCtrl.currentUser.name}}</h2>
-  </section>
-<div class="col-sm-12">
-  <div class="col-sm-4" ng-controller="LocationsController as locationsCtrl"><!-- USER LOCATION -->
-    <form name="user_location" ng-submit="locationsCtrl.createLocation()">
-      <label>set your location</label>
-      <div class="input-group">
-        <input name="address" class="form-control" type="text" placeholder="street address and city/state or zip" ng-model="locationsCtrl.address">
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-default">+</button>
-        </span>
+    <div class="col-sm-12">
+      <div class="col-sm-10" ng-init="usersCtrl.showUser()">
+        <h2>Hello, {{usersCtrl.currentUser.name}}</h2>
       </div>
-    </form>
-  </div> <!-- END USER LOCATION -->
-  <br>
-  <div ng-controller="MeetupsController as meetupsCtrl">
-    <div class="col-sm-4">
-      <form name="meetup_form" ng-submit="meetupsCtrl.createMeetup()">
-        <fieldset>
-          <legend>New Meeting</legend>
-          <div class="form-group">
-            <label>date:</label>
-            <input class="form-control" type="date" ng-model="meetupsCtrl.date">
-          </div>
-          <div class="form-group">
-            <label>time:</label>
-            <input class="form-control" type="time" step="900" ng-model="meetupsCtrl.time">
-          </div>
-          <button type="submit" class="btn btn-default">Set</button>
-        </fieldset>
-      </form>
-      <br>
+
+      <div class="col-sm-1" >
+        <button id="logout" class="btn btn-default" ng-click="auth.logout()">Logout</button>
+      </div>
     </div>
-  </div>
 
+    <div class="col-sm-12"> <!-- CONTAINER -->
+    <div class="col-sm-6">
+      <div ng-controller="LocationsController as locationsCtrl"><!-- USER LOCATION -->
+        <form name="user_location" ng-submit="locationsCtrl.createLocation()">
+          <label>Set your location</label>
+          <div class="input-group">
+            <input name="address" class="form-control" type="text" placeholder="street address and city/state or zip" ng-model="locationsCtrl.address">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-default">+</button>
+            </span>
+          </div>
+        </form>
+      </div> <!-- END USER LOCATION -->
 
-
+      <!-- NEW MEETUP -->
+      <div ng-controller="MeetupsController as meetupsCtrl">
+        <form name="meetup_form" ng-submit="meetupsCtrl.createMeetup()">
+          <fieldset>
+            <legend>New Meeting</legend>
+            <div class="form-group">
+              <label>date:</label>
+              <input class="form-control" type="date" ng-model="meetupsCtrl.date">
+            </div>
+            <div class="form-group">
+              <label>time:</label>
+              <input class="form-control" type="time" step="900" ng-model="meetupsCtrl.time">
+            </div>
+            <button type="submit" class="btn btn-default">Set</button>
+          </fieldset>
+        </form>
+        <br>
+      </div> <!-- NEW MEETUP END -->
+    </div> <!-- LEFT PANEL END -->
     <!-- MEETUPS LIST -->
-    <div class="col-sm-3" ng-init="meetupsCtrl.meetupsIndex()">
-      <div ng-repeat="meetup in meetupsCtrl.meetups">
-        <p>{{meetup.date | date: "mediumDate"}}</p>
-        <!-- <button ng-click="meetupsCtrl.setCurrentMeetup(meetup)">view</button> -->
+    <div class="col-sm-6 text-center" ng-controller="MeetupsController as meetupsCtrl">
+        <div ng-init="meetupsCtrl.meetupsIndex()">
+          <h4 class="list-group-item-heading">Your Hangouts:</h4>
+          <ul class="list-group" ng-repeat="meetup in meetupsCtrl.meetups">
+            <li class="list-group-item" ng-click="meetupsCtrl.setCurrentMeetup(meetup)">{{meetup.date | date: "mediumDate"}} @ {{meetup.time | date: "shortTime"}}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <!-- END MEETUPS LIST -->
-  </div>
+    </div><!-- END CONTAINER -->
+ </div>
+</div> <!-- END auth -->
 
-</div> <!-- END auth
+</div>

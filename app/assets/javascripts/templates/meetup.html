@@ -1,11 +1,20 @@
 <div ng-controller="MeetupsController as meetupsCtrl"> <!-- LOCATIONS for user and invts -->
+  <div class="col-sm-2">
+    <!-- BUTTON NOT WORKING - USERS CTRL -->
+    <button class="btn btn-default" ng-click="meetupsCtrl.goBack()">My Hangouts</button>
+  </div>
+
   <div ng-init="meetupsCtrl.showMeetup()">
-    <p>{{meetupsCtrl.currentMeetup.date | date: "mediumDate"}} @ {{meetupsCtrl.currentMeetup.time | date: "shortTime"}}</p>
+    <h3>{{meetupsCtrl.currentMeetup.date | date: "mediumDate"}} @ {{meetupsCtrl.currentMeetup.time | date: "shortTime"}}</h3>
+
+    <div ng-controller="LocationsController as locationsCtrl">
+      <h3>{{}}</h3> <!-- SHOW MEETUP -->
+    </div>
   </div>
   <br>
   <div ng-controller="InviteesController as invtCtrl"><!-- invite your friends! -->
     <form name="invitee_create" ng-submit="invtCtrl.createInvitee()">
-      <label>send invite texts to your friends!</label>
+      <label>Send invite texts to your friends!</label>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="friend's name" ng-model="invtCtrl.name">
         <input type="text" class="form-control" placeholder="example: +18005551234" ng-model="invtCtrl.phone_number">

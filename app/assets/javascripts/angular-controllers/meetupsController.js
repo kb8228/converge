@@ -17,8 +17,7 @@ angular.module('convergeApp')
     self.setCurrentMeetup = function(mtp){
       self.currentMeetup = mtp;
       self.currentMeetupId = mtp.id;
-      console.log(self.currentMeetup);
-      console.log(self.currentMeetupId);
+      $window.location.href = "#/meetups/" + self.currentMeetupId;
     }
 
     self.createMeetup = function(){
@@ -47,15 +46,12 @@ angular.module('convergeApp')
     }
 
     self.meetupsIndex = function(){
-      var user = window.location.hash.replace("#/users/", "");
-      console.log("user: " + user);
-      var url = "/api/meetups?user_id=" + user;
+      var url = "/api/meetups?user_id=" + self.params.id;
       console.log(self.params);
 
       $http.get(url)
       .success(function(data){
         console.log('here are your meetups');
-        // console.log(data); // logs meetup array
         self.meetups = data;
       })
       .error(function(data){
@@ -78,5 +74,9 @@ angular.module('convergeApp')
         console.log('error');
         self.error = data.error;
       });
+    }
+
+    self.goBack = function(){
+      $window.history.back();
     }
   }

@@ -8,7 +8,7 @@ angular.module('convergeApp')
     var accessToken = window.sessionStorage.access_token;
     self.params = $routeParams;
     self.error;
-    self.users = "users!";
+    self.currentUser;
 
     self.createUser = function(){
     // name, etc. are being passed on the form
@@ -35,6 +35,7 @@ angular.module('convergeApp')
     }
 
     self.showUser = function(){
+      // THIS URL DOESN'T WORK ON MEETUP PAGE
       var url = "/api/users/" + self.params.id;
       console.log(self.params);
       console.log(url);
@@ -42,6 +43,7 @@ angular.module('convergeApp')
       .success(function(data){
         console.log('heres your user');
         self.currentUser = data;
+        // $window.location.href = "#/users/" + currentUser.id;
       })
       .error(function(data){
         console.log(data);
