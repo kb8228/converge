@@ -3,23 +3,26 @@
   <div class="converge col-sm-12">
     <h1>Converge</h1>
   </div>
-  <!-- <div class="access"> -->
-    <div class="form-group landing-left col-sm-6" ng-controller="AuthenticationController as auth">
-      <legend>Login</legend>
-      <!-- begin login form -->
-      <form class="login-form" ng-submit="auth.login()" ng-if="auth.isAuthenticated == false">
-        <input class="login-input" type="text" placeholder="email" ng-model="auth.email">
-        <input class="login-input" type="password" placeholder="password" ng-model="auth.password">
-        <input type="submit" value="Log in" class="btn btn-submit">
-      </form>
+    <div class="landing-left col-sm-6" ng-controller="AuthenticationController as auth">
+      <fieldset class="col-sm-12">
+        <legend>Login</legend>
+        <!-- begin login form -->
+        <form class="form-group" ng-submit="auth.login()" ng-if="auth.isAuthenticated == false">
+        <label>Email:</label>
+          <input class="form-control" type="text" placeholder="email" ng-model="auth.email">
+          <label>Password:</label>
+          <input class="form-control" type="password" placeholder="password" ng-model="auth.password"><br>
+          <button type="submit" class="btn btn-success">Login</button>
+        </form>
+      </fieldset>
       <!-- end login form -->
 
       <div ng-if="auth.isAuthenticated">
-        <button ng-click="auth.logout()">Logout</button>
+        <button ng-click="auth.logout()" class="btn btn-default">Logout</button>
       </div>
     </div> <!-- END auth -->
 
-    <section class="landing-right col-sm-6" ng-controller="UsersController as usersCtrl">
+    <div class="landing-right col-sm-6" ng-controller="UsersController as usersCtrl">
       <form name="signup_form" novalidate ng-submit="usersCtrl.createUser(signup_form.$valid)">
       <fieldset class="col-sm-12">
         <legend>Signup</legend>
@@ -100,10 +103,10 @@
                  password confirmation needs to match password
               </small>
             </div>
-        </div>
-        <button type="submit" ng-disabled="signup_form.$invalid" class="btn btn-primary">Join!</button>
+        </div><br>
+        <button type="submit" ng-disabled="signup_form.$invalid" class="btn btn-success">Join!</button>
       </fieldset>
     </form>
-    </section>
+    </div>
   <!-- </div> -->
 </div>
