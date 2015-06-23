@@ -1,0 +1,109 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+ h2 {
+  color: white;
+ }
+ h3 {
+  color: white;
+ }
+ p {
+  color: white;
+ }
+
+ .list-group-item-heading{
+  color: white;
+ }
+ .container-fluid {
+    background: url(<%= asset_path 'bar.jpg'%>) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+ 
+ .main {
+   display: block;
+   height: 100vh;
+   width: 700px;
+   margin: 0 auto;
+ }
+
+ .center {
+   text-align: center;
+ }
+
+ .right {
+   text-align: right;
+ }
+
+ .converge {
+   margin-top: 30px;
+   h1 {
+     font-size: 60px;
+     color: #fff;
+   }
+ }
+
+ .landing-left,
+ .landing-right {
+   position: relative;
+   height: 450px;
+   width: 350px;
+   top: 5%;
+   background-color: rgba(0, 0, 0, 0.5);
+ }
+
+ .login-form {
+   position: relative;
+   height: 110px;
+   top: 50%;
+   margin-top: -100px;
+   input {
+     display: block;
+     margin: 0 auto 10px auto;
+   }
+ }
+
+ legend {
+  color: white !important;
+  padding-top: 15px;
+ }
+ label {
+   color: white !important;
+ }
+
+ .top-bar {
+   height: 50px;
+   background-color: rgba(0, 0, 0, 0.5);
+   border-radius: 15px;
+   padding-top: 12px;
+   h1 {
+     color: white;
+     margin: -7px auto -10px auto;
+   }
+ }
+
+ .list-group-item:hover{
+  cursor: pointer;
+  background-color: rgba(0,0,0,0.5);
+ }
+
+ #logout{
+  margin: 25px auto; 
+ }
