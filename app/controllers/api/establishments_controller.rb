@@ -38,7 +38,7 @@ module API
 
     private
     def location_params
-      params.require(:establishment).permit(:name, :address, :phone_number, :hours, :image_url, :category)
+      params.require(:establishment).permit(:name, :address, :phone_number, :hours, :image_url, :category, :location_id)
     end
 
   end #EstablishmentsController ENDs

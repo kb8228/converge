@@ -22,7 +22,7 @@ module API
     
     def update
       @user = User.find(params[:id])
-
+      @user.location = Location.create(location_params)
       if @user.update(user_params)
         render json: @user, status: 200
       else
@@ -38,7 +38,7 @@ module API
 
     private
       def user_params
-        params.require(:user).permit(:name, :email, :phone_number, :password, :password_confirmation, :token)
+        params.require(:user).permit(:name, :email, :phone_number, :password, :password_confirmation, :token, :location_id)
       end
 
       def restrict_access
@@ -46,5 +46,8 @@ module API
         render json: {error:"You need to be logged in to access this page"}, status: 401 unless token
       end
 
+      def location_params
+        params.require(:location).permit(:address, :latitude, :longitude)
+      end
   end
 end

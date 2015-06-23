@@ -9,6 +9,7 @@ angular.module('convergeApp')
     self.params = $routeParams;
     self.error;
     self.currentUser;
+    self.location;
 
     self.createUser = function(){
     // name, etc. are being passed on the form
@@ -29,6 +30,26 @@ angular.module('convergeApp')
       .error(function(data){
         console.log(data);
         console.log(newUser);
+        console.log('error');
+        self.error = data.error;
+      });
+    }
+
+    self.updateUserLocation = function(){
+    // name, etc. are being passed on the form
+      var userLocation = {
+        location: self.location,
+        token: accessToken
+      };
+      var url = "/api/users/" + self.params.id;
+      $http.patch(url, userLocation)
+      .success(function(data){
+        console.log('user location was created');
+        console.log(data);
+      })
+      .error(function(data){
+        console.log(data);
+        console.log(userLocation);
         console.log('error');
         self.error = data.error;
       });

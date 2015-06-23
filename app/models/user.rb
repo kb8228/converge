@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_secure_token
 
   has_many :meetups, dependent: :destroy
-  has_many :locations, dependent: :destroy
+  belongs_to :location
 
   def send_convergence_text
     client = Twilio::REST::Client.new(Figaro.env.twilio_account_sid, Figaro.env.twilio_auth_token)

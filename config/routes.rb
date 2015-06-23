@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
     resources :locations, only: [:index, :show, :create, :destroy]
 
-    resources :invitees, only: [:index, :show, :create, :destroy]
+    resources :invitees, only: [:index, :show, :create, :update, :destroy]
 
     post '/authenticate' => 'authentication#sign_in'
   end

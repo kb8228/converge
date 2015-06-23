@@ -1,10 +1,10 @@
 class Location < ActiveRecord::Base
   geocoded_by :address
-  after_validation :geocode
+  after_validation :geocode, if: ->(obj){ obj.address.present? && obj.latitude.nil?}
   
-  belongs_to :user
-  belongs_to :invitee
-  belongs_to :meetup
-  belongs_to :establishment
+  has_many :users
+  has_many :invitees
+  has_many :meetups
+  has_many :establishments
 
 end

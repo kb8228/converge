@@ -15,10 +15,10 @@ module API
 
       if @location.save
         render json: @location, status: 201
-        if @location.invitee && @location.invitee.meetup.all_responded?
-          @location.invitee.meetup.find_center(@location.invitee.meetup.coordinates)
-          @location.invitee.meetup.user.send_convergence_text
-        end
+        # if @location.invitee && @location.invitee.meetup.all_responded?
+        #   @location.invitee.meetup.find_center(@location.invitee.meetup.coordinates)
+        #   @location.invitee.meetup.user.send_convergence_text
+        # end
       else
         render json: {errors: @location.errors}, status: 422
       end
@@ -42,7 +42,7 @@ module API
 
     private
     def location_params
-      params.require(:location).permit(:address, :latitude, :longitude, :establishment_id, :user_id, :meetup_id, :invitee_id)
+      params.require(:location).permit(:address, :latitude, :longitude)
     end
 
   end #LocationsController ENDs

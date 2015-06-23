@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604191739) do
+ActiveRecord::Schema.define(version: 20150623175322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,10 @@ ActiveRecord::Schema.define(version: 20150604191739) do
     t.string   "category"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "location_id"
   end
+
+  add_index "establishments", ["location_id"], name: "index_establishments_on_location_id", using: :btree
 
   create_table "invitees", force: :cascade do |t|
     t.string   "name"
@@ -34,26 +37,19 @@ ActiveRecord::Schema.define(version: 20150604191739) do
     t.integer  "meetup_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "location_id"
   end
 
+  add_index "invitees", ["location_id"], name: "index_invitees_on_location_id", using: :btree
   add_index "invitees", ["meetup_id"], name: "index_invitees_on_meetup_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string   "address"
-    t.integer  "user_id"
-    t.integer  "invitee_id"
-    t.integer  "meetup_id"
-    t.integer  "establishment_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.float    "latitude"
     t.float    "longitude"
   end
-
-  add_index "locations", ["establishment_id"], name: "index_locations_on_establishment_id", using: :btree
-  add_index "locations", ["invitee_id"], name: "index_locations_on_invitee_id", using: :btree
-  add_index "locations", ["meetup_id"], name: "index_locations_on_meetup_id", using: :btree
-  add_index "locations", ["user_id"], name: "index_locations_on_user_id", using: :btree
 
   create_table "meetups", force: :cascade do |t|
     t.date     "date"
@@ -62,9 +58,11 @@ ActiveRecord::Schema.define(version: 20150604191739) do
     t.integer  "establishment_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "location_id"
   end
 
   add_index "meetups", ["establishment_id"], name: "index_meetups_on_establishment_id", using: :btree
+  add_index "meetups", ["location_id"], name: "index_meetups_on_location_id", using: :btree
   add_index "meetups", ["user_id"], name: "index_meetups_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -75,13 +73,16 @@ ActiveRecord::Schema.define(version: 20150604191739) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "token"
+    t.integer  "location_id"
   end
 
+  add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree
+
+  add_foreign_key "establishments", "locations"
+  add_foreign_key "invitees", "locations"
   add_foreign_key "invitees", "meetups"
-  add_foreign_key "locations", "establishments"
-  add_foreign_key "locations", "invitees"
-  add_foreign_key "locations", "meetups"
-  add_foreign_key "locations", "users"
   add_foreign_key "meetups", "establishments"
+  add_foreign_key "meetups", "locations"
   add_foreign_key "meetups", "users"
+  add_foreign_key "users", "locations"
 end

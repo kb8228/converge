@@ -14,6 +14,7 @@ angular.module('convergeApp')
     self.currentInvitee;
     self.name;
     self.phone_number;
+    self.location;
 
     self.createInvitee = function(){
       var meetupId = window.location.hash.replace("#/meetups/", "");
@@ -36,6 +37,25 @@ angular.module('convergeApp')
         self.error = data.error;
       });
     } // createInvitee ENDs
+
+    self.updateInviteeLocation = function(){
+      var inviteeLocation = {
+        location: self.location,
+        invitee: self
+      };
+      var url = "/api/invitees/" + self.params.id;
+      $http.patch(url, inviteeLocation)
+      .success(function(data){
+        console.log('invitee location was created');
+        console.log(data);
+      })
+      .error(function(data){
+        console.log(inviteeLocation);
+        console.log(data);
+        console.log('error');
+        self.error = data.error;
+      });
+    } // updateInvitee ENDs
 
     self.inviteesIndex = function(){
       var meetupId = window.location.hash.replace("#/meetups/", "");

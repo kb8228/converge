@@ -3,11 +3,11 @@
   <div ng-init="invtCtrl.showInvitee()">
     <h2>Hello, {{invtCtrl.currentInvitee.name}}</h2>
     <p>To accept the invitation, please provide an address from which you will depart:</p>
-    <div ng-controller="LocationsController as locationsCtrl">
-      <form name="invitee_location" ng-submit="locationsCtrl.createLocation()">
+    <div ng-controller="InviteesController as invtCtrl">
+      <form name="invitee_location" ng-submit="invtCtrl.updateInviteeLocation()">
         <label>where will you be coming from?</label>
         <div class="input-group">
-          <input name="address" class="form-control" type="text" placeholder="street address and city/state or zip" ng-model="locationsCtrl.address">
+          <input name="address" class="form-control" type="text" placeholder="street address and city/state or zip" ng-model="invtCtrl.location.address">
           <span class="input-group-btn">
             <button type="submit" class="btn btn-default">+</button>
           </span>

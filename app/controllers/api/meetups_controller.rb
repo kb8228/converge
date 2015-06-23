@@ -39,7 +39,7 @@ module API
 
     private
     def meetup_params
-      params.require(:meetup).permit(:user_id, :date, :time, :establishment_id)
+      params.require(:meetup).permit(:user_id, :date, :time, :establishment_id, :location_id)
     end
   end
 end
