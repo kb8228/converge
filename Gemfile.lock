@@ -195,6 +195,7 @@ DEPENDENCIES
   angularjs-rails
   bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.3.4)
+  bundler (>= 1.8.4)
   byebug
   coffee-rails (~> 4.1.0)
   figaro
