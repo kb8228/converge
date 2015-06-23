@@ -77,7 +77,10 @@
    }
  }
 
- legend,
+ legend {
+  color: white !important;
+  padding-top: 15px;
+ }
  label {
    color: white !important;
  }
