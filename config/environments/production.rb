@@ -30,6 +30,8 @@ Rails.application.configure do
   config.assets.compress = false
   # config.assets.css_compressor = :sass
 
+  ## skipping pipeline:
+  config.assets.enabled = false
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
