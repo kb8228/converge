@@ -13,12 +13,13 @@ angular.module('convergeApp')
 
     self.createUser = function(){
     // name, etc. are being passed on the form
-      var newUser = {
+      var newUser = {user: {
         name:self.name,
         email: self.email,
         phoneNumber: self.phoneNumber,
         password: self.password,
         password_confirmation: self.password_confirmation
+        }
       };
 
       $http.post("/api/users", newUser)
