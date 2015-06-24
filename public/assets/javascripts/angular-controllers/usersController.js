@@ -12,7 +12,7 @@ angular.module('convergeApp')
     self.location;
 
     self.createUser = function(){
-    // name, etc. are being passed on the form
+    // name, etc. are being passed from the form
       var newUser = {user: {
         name:self.name,
         email: self.email,
@@ -26,7 +26,7 @@ angular.module('convergeApp')
       .success(function(data){
         console.log('user was created');
         console.log(data);
-        window.location.href = '#/users/' + data.id;
+        self.showUser(data);
       })
       .error(function(data){
         console.log(data);
@@ -37,7 +37,6 @@ angular.module('convergeApp')
     }
 
     self.updateUserLocation = function(){
-    // name, etc. are being passed on the form
       var userLocation = {
         location: self.location,
         token: accessToken
@@ -56,12 +55,11 @@ angular.module('convergeApp')
       });
     }
 
-    self.showUser = function(){
-      // THIS URL DOESN'T WORK ON MEETUP PAGE
-      var url = "/api/users/" + self.params.id;
+    self.showUser = function(user){
+      var url = "/api/users/" + user.id;
       console.log(self.params);
       console.log(url);
-      $http.post(url, {token: accessToken})
+      $http.post(url, {token: user.token})
       .success(function(data){
         console.log('heres your user');
         self.currentUser = data;

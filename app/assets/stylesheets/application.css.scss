@@ -46,6 +46,7 @@
 
  .center {
    text-align: center;
+   margin: 0 auto;
  }
 
  .right {
@@ -54,6 +55,7 @@
 
  .converge {
    margin-top: 30px;
+   margin-bottom: 20px;
    h1 {
      font-size: 60px;
      color: #fff;
@@ -101,6 +103,17 @@
 
  .list-group-item:hover{
   cursor: pointer;
+  background-color: rgba(0,0,0,0.5);
+ }
+
+ .center-login{
+  height: 350px;
+  top: 5%;
+  padding-top: 3%;
+  background-color: rgba(0,0,0,0.5);
+ }
+
+ .bgnd {
   background-color: rgba(0,0,0,0.5);
  }
 

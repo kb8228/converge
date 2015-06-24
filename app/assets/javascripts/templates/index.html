@@ -7,11 +7,15 @@
       <fieldset class="col-sm-12">
         <legend>Login</legend>
         <!-- begin login form -->
-        <form class="form-group" ng-submit="auth.login()" ng-if="auth.isAuthenticated == false">
-        <label>Email:</label>
-          <input class="form-control" type="text" placeholder="email" ng-model="auth.email">
-          <label>Password:</label>
-          <input class="form-control" type="password" placeholder="password" ng-model="auth.password"><br>
+        <form name="login-form" ng-submit="auth.login()" ng-if="auth.isAuthenticated == false">
+          <div class="form-group">
+            <label>Email:</label>
+            <input class="form-control" type="text" placeholder="email" ng-model="auth.email">
+          </div>
+          <div class="form-group">
+            <label>Password:</label>
+            <input class="form-control" type="password" placeholder="password" ng-model="auth.password">
+          </div>
           <button type="submit" class="btn btn-success">Login</button>
         </form>
       </fieldset>

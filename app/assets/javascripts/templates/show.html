@@ -1,27 +1,38 @@
 <!-- show.html -->
-<div class="main">
+<div class="main center">
+
+<div class="converge col-sm-12">
+  <h1>Converge</h1>
+</div>
 
 <div ng-controller="AuthenticationController as auth">
   <!-- begin login form -->
-  <form class="login-form" ng-submit="auth.login()" ng-if="auth.isAuthenticated == false">
-    <input class="login-input" type="text" placeholder="email" ng-model="auth.email">
-    <input class="login-input" type="password" placeholder="password" ng-model="auth.password">
-    <input type="submit" value="Log in" class="btn btn-submit">
-  </form>
+  <div class="center-login col-sm-6 col-sm-offset-3" ng-if="auth.isAuthenticated == false">
+    <fieldset class="col-sm-12">
+      <legend>Login</legend>
+      <form class="form-group" ng-submit="auth.login()" ng-if="auth.isAuthenticated == false">
+      <label>Email:</label>
+        <input class="form-control" type="text" placeholder="email" ng-model="auth.email">
+        <label>Password:</label>
+        <input class="form-control" type="password" placeholder="password" ng-model="auth.password"><br>
+        <button type="submit" class="btn btn-success">Login</button>
+      </form>
+    </fieldset>
+  </div>
   <!-- end login form -->
 
   <div ng-if="auth.isAuthenticated">
-    <div class="col-sm-12">
-      <div class="col-sm-10" ng-init="usersCtrl.showUser()">
+    <div class="bgnd col-sm-12">
+      <div class="col-sm-6" ng-init="usersCtrl.showUser()">
         <h2>Hello, {{usersCtrl.currentUser.name}}</h2>
       </div>
 
-      <div class="col-sm-1" >
-        <button id="logout" class="btn btn-default" ng-click="auth.logout()">Logout</button>
+      <div class="col-sm-6" >
+        <button id="logout" class="btn btn-xs btn-warning" ng-click="auth.logout()">Logout</button>
       </div>
     </div>
 
-    <div class="col-sm-12"> <!-- CONTAINER -->
+    <div class="bgnd col-sm-12"> <!-- CONTAINER -->
     <div class="col-sm-6">
       <div ng-controller="UsersController as usersCtrl"><!-- USER LOCATION -->
         <form name="user_location" ng-submit="usersCtrl.updateUserLocation()">
@@ -48,7 +59,7 @@
               <label>time:</label>
               <input class="form-control" type="time" step="900" ng-model="meetupsCtrl.time">
             </div>
-            <button type="submit" class="btn btn-default">Set</button>
+            <button type="submit" class="btn btn-success">Set</button>
           </fieldset>
         </form>
         <br>

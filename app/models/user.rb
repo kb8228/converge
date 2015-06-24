@@ -16,15 +16,4 @@ class User < ActiveRecord::Base
     )
   end
 
-  # attr_accessor :password, :password_confirmation # commenting out to test
-
-
-  #Creating PW digest entry for user: - dk if needed
-  # def password=(unencrypted_password)
-  #   if not(unencrypted_password.nil? or unencrypted_password.empty?)
-  #     @password = unencrypted_password
-  #     self.password_digest = BCrypt::Password.create(unencrypted_password)
-  #   end
-  # end
-
 end

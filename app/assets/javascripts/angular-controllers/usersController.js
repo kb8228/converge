@@ -24,7 +24,7 @@ angular.module('convergeApp')
 
       $http.post("/api/users", newUser)
       .success(function(data){
-        console.log('user was created');
+        console.log("user created");
         console.log(data);
         window.location.href = '#/users/' + data.id;
       })
