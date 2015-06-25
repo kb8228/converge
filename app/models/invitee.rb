@@ -3,7 +3,7 @@ class Invitee < ActiveRecord::Base
   belongs_to :location
 
   def send_invitation_text
-    client = Twilio::REST::Client.new(Figaro.env.twilio_account_sid, Figaro.env.twilio_auth_token)
+    client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
 
     client.messages.create(
       from: "+19179832815",
