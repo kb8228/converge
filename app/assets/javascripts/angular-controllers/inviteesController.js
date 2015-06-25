@@ -15,6 +15,7 @@ angular.module('convergeApp')
     self.name;
     self.phone_number;
     self.location;
+    self.invtList = [];
 
     self.createInvitee = function(){
       var meetupId = window.location.hash.replace("#/meetups/", "");
@@ -30,6 +31,9 @@ angular.module('convergeApp')
       .success(function(data){
         console.log('invitee was created');
         console.log(data);
+        self.inviteesIndex();
+        self.name = null;
+        self.phone_number = null;
       })
       .error(function(data){
         console.log(data);

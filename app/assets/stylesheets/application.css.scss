@@ -29,6 +29,17 @@
  .list-group-item-heading{
   color: white;
  }
+
+ .list-group-item:hover{
+  cursor: pointer;
+  background-color: silver;
+ }
+
+ .no-link:hover {
+  cursor: default;
+  background-color: white;
+ }
+
  .container-fluid {
     background: url("https://bakedbecause.files.wordpress.com/2014/04/downstairs-bar-2.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -101,11 +112,6 @@
    }
  }
 
- .list-group-item:hover{
-  cursor: pointer;
-  background-color: rgba(0,0,0,0.5);
- }
-
  .center-login{
   height: 350px;
   top: 5%;
@@ -117,6 +123,18 @@
   background-color: rgba(0,0,0,0.5);
  }
 
+ .pad {
+  margin-top: 50px;
+  padding: 30px;
+  padding-bottom: 75px;
+ }
+
  #logout{
   margin: 25px auto; 
+ }
+
+ #googleMap {
+   height: 250px;
+   width: 400px;
+   border: 1px solid white;
  }

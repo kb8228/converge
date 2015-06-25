@@ -13,6 +13,45 @@ angular.module('convergeApp')
     self.currentMeetup;
     self.currentMeetupId;
     self.error;
+    self.location;
+
+    ////////////MAP///////////////////////////
+
+    self.getLocation = function(locId){
+      var url = "/api/locations/" + locId;
+
+      $http.get(url)
+      .success(function(data){
+        console.log('here is the meetup location');
+        self.location = data;
+        console.log(data);
+      })
+      .error(function(data){
+        console.log(data);
+        console.log('error');
+        self.error = data.error;
+      });
+    }
+    
+    self.showConvergence = function() {
+      var myLatlng = new google.maps.LatLng(self.location.latitude, self.location.longitude);
+      var mapOptions = {
+        zoom: 12,
+        center: myLatlng
+      };
+
+      var map = new google.maps.Map(document.getElementById('googleMap'),
+          mapOptions);
+
+      var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+          title: 'Convergence Point!'
+      });
+    }
+    google.maps.event.addDomListener(window, 'load', self.showConvergence);
+
+    ////////////////////////////////////////////////////
 
     self.setCurrentMeetup = function(mtp){
       self.currentMeetup = mtp;

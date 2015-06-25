@@ -36,11 +36,11 @@
     <div class="col-sm-6">
       <div ng-controller="UsersController as usersCtrl"><!-- USER LOCATION -->
         <form name="user_location" ng-submit="usersCtrl.updateUserLocation()">
-          <label>Set your location</label>
+          <legend>Your location</legend>
           <div class="input-group">
             <input name="address" class="form-control" type="text" placeholder="street address and city/state or zip" ng-model="usersCtrl.location.address">
             <span class="input-group-btn">
-              <button type="submit" class="btn btn-default">+</button>
+              <button type="submit" class="btn btn-success">+</button>
             </span>
           </div>
         </form>
@@ -68,7 +68,7 @@
     <!-- MEETUPS LIST -->
     <div class="col-sm-6 text-center" ng-controller="MeetupsController as meetupsCtrl">
         <div ng-init="meetupsCtrl.meetupsIndex()">
-          <h4 class="list-group-item-heading">Your Hangouts:</h4>
+          <legend>Your Hangouts:</legend>
           <ul class="list-group" ng-repeat="meetup in meetupsCtrl.meetups">
             <li class="list-group-item" ng-click="meetupsCtrl.setCurrentMeetup(meetup)">{{meetup.date | date: "mediumDate"}} @ {{meetup.time | date: "shortTime"}}
             </li>

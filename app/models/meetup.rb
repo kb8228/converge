@@ -25,5 +25,6 @@ class Meetup < ActiveRecord::Base
   def find_center(coords)
     lat_n_lng = Geocoder::Calculations.geographic_center(coords)
     self.location = Location.create(latitude: lat_n_lng[0], longitude: lat_n_lng[1])
+    self.save()
   end
 end

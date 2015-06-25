@@ -1,27 +1,40 @@
 <div ng-controller="MeetupsController as meetupsCtrl"> <!-- LOCATIONS for user and invts -->
+<div class="main center">
   <div class="col-sm-2">
     <!-- BUTTON NOT WORKING - USERS CTRL -->
-    <button class="btn btn-default" ng-click="meetupsCtrl.goBack()">My Hangouts</button>
+    <button class="btn btn-success" ng-click="meetupsCtrl.goBack()">My Page</button>
   </div>
 
-  <div ng-init="meetupsCtrl.showMeetup()">
+  <div ng-init="meetupsCtrl.showMeetup()"> <!-- SHOW MEETUP -->
     <h3>{{meetupsCtrl.currentMeetup.date | date: "mediumDate"}} @ {{meetupsCtrl.currentMeetup.time | date: "shortTime"}}</h3>
-
-    <div ng-controller="LocationsController as locationsCtrl">
-      <h3>{{}}</h3> <!-- SHOW MEETUP -->
-    </div>
-  </div>
-  <br>
-  <div ng-controller="InviteesController as invtCtrl"><!-- invite your friends! -->
-    <form name="invitee_create" ng-submit="invtCtrl.createInvitee()">
-      <label>Send invite texts to your friends!</label>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="friend's name" ng-model="invtCtrl.name">
-        <input type="text" class="form-control" placeholder="example: +18005551234" ng-model="invtCtrl.phone_number">
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-default">+</button>
-        </span>
+    <h3 ng-if="meetupsCtrl.currentMeetup.location_id">Convergence point has been set!</h3>
+  </div> <!-- show meetup END -->
+  
+  <div class="bgnd pad col-sm-12">
+    <div ng-if="meetupsCtrl.currentMeetup.location_id" ng-init="meetupsCtrl.getLocation(meetupsCtrl.currentMeetup.location_id)">
+      <div id="googleMap" class="col-sm-12" ng-init="meetupsCtrl.showConvergence()">
       </div>
-    </form>
-  </div> <!-- invite your friends! END -->
+    </div>
+    <div ng-controller="InviteesController as invtCtrl"><!-- invite your friends! -->
+      <form name="invitee_create" class="col-sm-6" ng-submit="invtCtrl.createInvitee()">
+        <legend>Send invite texts:</legend>
+        <div class="form-group">
+          <label>Friend's name</label>
+          <input type="text" class="form-control" placeholder="friend's name" ng-model="invtCtrl.name">
+        </div>
+        <div class="form-group">
+          <label>Friend's phone number</label>
+          <input type="text" class="form-control" placeholder="example: +18005551234" ng-model="invtCtrl.phone_number">
+        </div>
+          <button type="submit" class="btn btn-success">Send</button>
+      </form>
+      <div name="list_invitees" class="col-sm-6" ng-init="invtCtrl.inviteesIndex()"> <!-- invitees list -->
+      <legend>You invited:</legend>
+        <ul class="list-group" ng-repeat="invitee in invtCtrl.invitees">
+          <li class="list-group-item no-link">{{invitee.name}} - {{invitee.phone_number}}</li>
+        </ul>
+      </div> <!-- invitees list END -->
+    </div> <!-- invite your friends! END -->
+  </div>
+</div>
 </div> <!-- LOCATIONS for user and invts END -->
