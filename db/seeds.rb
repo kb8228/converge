@@ -8,6 +8,6 @@
 
 User.destroy_all
 
-ksenia = User.create(email:"kseniasmith@yahoo.com", phone_number: "+13473244140", name:"Ksenia",password:"password", password_confirmation: "password")
-ksusha = User.create(email:"ksusha@example.com", phone_number: "+13473244140", name: "Ksusha",password:"password", password_confirmation: "password")
-kay = User.create(email:"kay@example.com",phone_number: "+13473244140", name: "Kay",password:"password", password_confirmation: "password")
+ksenia = User.create(email:"ksenia@example.com", phone_number: "3473244140", name:"Ksenia",password:"password", password_confirmation: "password")
+ksusha = User.create(email:"ksusha@example.com", phone_number: "3473244140", name: "Ksusha",password:"password", password_confirmation: "password")
+kay = User.create(email:"kay@example.com",phone_number: "3473244140", name: "Kay",password:"password", password_confirmation: "password")
