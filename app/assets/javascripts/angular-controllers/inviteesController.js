@@ -22,9 +22,11 @@ angular.module('convergeApp')
       meetupId = parseInt(meetupId, 10);
       console.log(meetupId);
       var newInvitee = {
-        name: self.name,
-        phone_number: self.phone_number,
-        meetup_id: meetupId
+        invitee: {
+          name: self.name,
+          phone_number: self.phone_number,
+          meetup_id: meetupId
+        }
       };
 
       $http.post("/api/invitees", newInvitee)
