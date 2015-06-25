@@ -27,4 +27,15 @@ class Meetup < ActiveRecord::Base
     self.location = Location.create(latitude: lat_n_lng[0], longitude: lat_n_lng[1])
     self.save()
   end
+
+  def send_convergence_text
+    client = Twilio::REST::Client.new(Figaro.env.twilio_account_sid, Figaro.env.twilio_auth_token)
+
+    client.messages.create(
+      from: "+19179832815",
+      to: "+1#{self.user.phone_number}", #in prod, can do self.phone
+      body: "Hi, #{self.user.name}! All your friends accepted your invitations and we found a perfect location for you all to meet! Please visit your meeting page link to see it and to find a great cafe or bar nearby: http://converge-us.herokuapp.com/#/meetups/#{self.id}"
+    )
+  end
+
 end

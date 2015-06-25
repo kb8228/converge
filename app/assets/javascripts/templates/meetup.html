@@ -16,17 +16,33 @@
       </div>
     </div>
     <div ng-controller="InviteesController as invtCtrl"><!-- invite your friends! -->
-      <form name="invitee_create" class="col-sm-6" ng-submit="invtCtrl.createInvitee()">
+      <form name="invitee_create" class="col-sm-6" novalidate ng-submit="invtCtrl.createInvitee(invitee_create.$valid)">
         <legend>Send invite texts:</legend>
         <div class="form-group">
           <label>Friend's name</label>
           <input type="text" class="form-control" placeholder="friend's name" ng-model="invtCtrl.name">
+          <div class="error-container" ng-show="invitee_create.name.$dirty && invitee_create.name.$invalid">
+            <small class="error" 
+                   ng-show="invitee_create.name.$error.required">
+                   friend's name is required
+            </small>
+          </div>
         </div>
         <div class="form-group">
           <label>Friend's phone number</label>
-          <input type="text" class="form-control" placeholder="example: +18005551234" ng-model="invtCtrl.phone_number">
+          <input type="text" name="phone" class="form-control" placeholder="example: 8005551234" ng-model="invtCtrl.phone_number" ng-minlength=10 ng-maxlength=10 required />
+          <div class="error-container" ng-show="invitee_create.phone.$dirty && invitee_create.phone.$invalid">
+            <small class="error" 
+               ng-show="invitee_create.phone.$error.required">
+               phone number is required for app communication
+            </small>
+            <small class="error" 
+               ng-show="invitee_create.phone.$error.minlength || invitee_create.phone.$error.maxlength">
+               please input 10-digit number including area code
+            </small>
+          </div>
         </div>
-          <button type="submit" class="btn btn-success">Send</button>
+          <button type="submit" ng-disabled="invitee_create.$invalid" class="btn btn-success">Send</button>
       </form>
       <div name="list_invitees" class="col-sm-6" ng-init="invtCtrl.inviteesIndex()"> <!-- invitees list -->
       <legend>You invited:</legend>

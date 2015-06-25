@@ -29,7 +29,7 @@ module API
         render json: @invitee, status: 200
         if @invitee.location && @invitee.meetup.all_responded?
           @invitee.meetup.find_center(@invitee.meetup.coordinates)
-          @invitee.meetup.user.send_convergence_text
+          @invitee.meetup.send_convergence_text
         end
       else
         render json: {errors: @invitee.errors}, status: 422

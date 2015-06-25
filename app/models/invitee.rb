@@ -7,8 +7,8 @@ class Invitee < ActiveRecord::Base
 
     client.messages.create(
       from: "+19179832815",
-      to: self.phone_number, #in prod, can do self.phone
-      body: "Hi, #{self.name}! You have been invited to hang out by #{self.meetup.user.name}! Please visit this link to accept, so we can find an ideal meeting location for you: #{}. Yours truly, team of Converge."
+      to: "+1#{self.phone_number}", #in prod, can do self.phone
+      body: "Hi, #{self.name}! You have been invited to hang out by #{self.meetup.user.name}! Please visit this link to accept, so we can find an ideal meeting location for you: http://converge-us.herokuapp.com/#/invitees/#{self.id}. Yours truly, team of Converge."
     )
   end
 

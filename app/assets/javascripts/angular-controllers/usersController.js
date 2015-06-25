@@ -16,7 +16,7 @@ angular.module('convergeApp')
       var newUser = {user: {
         name:self.name,
         email: self.email,
-        phoneNumber: self.phoneNumber,
+        phone_number: self.phone_number,
         password: self.password,
         password_confirmation: self.password_confirmation
         }

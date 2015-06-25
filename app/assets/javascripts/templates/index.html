@@ -69,6 +69,25 @@
             </small>
           </div>
         </div> <!-- EMAIL ENDs -->
+        <div class="form-group"> <!-- PHONE -->          
+          <label>Your phone number</label>
+          <input type="text" 
+            placeholder="example: 8005551234" 
+            name="phone" 
+            class="form-control"
+            ng-model="usersCtrl.phone_number" 
+            ng-minlength=10 ng-maxlength=10 required />
+          <div class="error-container" ng-show="signup_form.phone.$dirty && signup_form.phone.$invalid">
+            <small class="error" 
+               ng-show="signup_form.phone.$error.required">
+               phone number is required for app communication
+            </small>
+            <small class="error" 
+               ng-show="signup_form.phone.$error.minlength || signup_form.phone.$error.maxlength">
+               please input 10-digit number including area code
+            </small>
+          </div>
+        </div> <!-- PHONE ENDs -->
         <div class="form-group"> <!-- PASSWORD -->
           <label>Password</label>
           <input type="password"
