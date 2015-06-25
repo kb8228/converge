@@ -29,10 +29,10 @@ class Meetup < ActiveRecord::Base
   end
 
   def send_convergence_text
-    client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
+    client = Twilio::REST::Client.new(Figaro.env.twilio_account_sid, Figaro.env.twilio_auth_token)
 
     client.messages.create(
-      from: "+19179832815",
+      from: "+12132634373",
       to: "+1#{self.user.phone_number}", #in prod, can do self.phone
       body: "Hi, #{self.user.name}! All your friends accepted your invitations and we found a perfect location for you all to meet! Please visit your meeting page link to see it and to find a great cafe or bar nearby: http://converge-us.herokuapp.com/#/meetups/#{self.id}"
     )
